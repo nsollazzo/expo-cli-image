@@ -13,13 +13,13 @@ jobs:
           docker build . \
             --build-arg NODE_VERSION=12 \
             --build-arg EXPO_VERSION=3 \
-            --tag nsollazzo/expo-cli:3
+            --tag nsollazzo/expo-dev:3
       - name: Test image
-        run: docker run --rm nsollazzo/expo-cli:3 diagnostics
+        run: docker run --rm nsollazzo/expo-dev:3 diagnostics
       - name: Authenticate docker
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u nsollazzo --password-stdin
       - name: Publish image
         run: |
-          docker tag nsollazzo/expo-cli:3 nsollazzo/expo-cli:latest
-          docker push nsollazzo/expo-cli:3
-          docker push nsollazzo/expo-cli:latest
+          docker tag nsollazzo/expo-dev:3 nsollazzo/expo-dev:latest
+          docker push nsollazzo/expo-dev:3
+          docker push nsollazzo/expo-dev:latest
